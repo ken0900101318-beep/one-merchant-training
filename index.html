@@ -1,0 +1,2544 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ONE桌遊商家端管理系統 - 新員工教育訓練</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "微軟正黑體", Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #667eea;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h2 {
+            color: #764ba2;
+            font-size: 1.8em;
+            margin: 40px 0 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea15, #764ba215);
+            border-left: 5px solid #667eea;
+            border-radius: 5px;
+        }
+        
+        h3 {
+            color: #555;
+            font-size: 1.4em;
+            margin: 30px 0 15px 0;
+            padding-left: 10px;
+            border-left: 3px solid #764ba2;
+        }
+        
+        h4 {
+            color: #666;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+        
+        h5 {
+            color: #777;
+            font-size: 1.1em;
+            margin: 15px 0 8px 0;
+        }
+        
+        p {
+            margin: 15px 0;
+            text-align: justify;
+        }
+        
+        ul, ol {
+            margin: 15px 0 15px 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            border: 2px solid #667eea;
+        }
+        
+        .toc h2 {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin: 0;
+        }
+        
+        .toc > ul > li {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .toc a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background: #f5f5f5;
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .info-box.warning {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        
+        .info-box.success {
+            background: #d4edda;
+            border-left-color: #28a745;
+        }
+        
+        .info-box.info {
+            background: #d1ecf1;
+            border-left-color: #17a2b8;
+        }
+        
+        .info-box h4 {
+            margin: 0 0 10px 0;
+            color: inherit;
+        }
+        
+        .step-list {
+            background: #f8f9fa;
+            padding: 20px 20px 20px 50px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .step-list li {
+            margin: 12px 0;
+            font-size: 1.05em;
+        }
+        
+        .feature-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border: 1px solid #dee2e6;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+        
+        .badge-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .badge-warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
+        .badge-info {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .badge-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+            font-size: 0.95em;
+        }
+        
+        .screenshot {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            margin: 20px 0;
+        }
+        
+        .screenshot-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .screenshot-caption {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 ONE桌遊商家端管理系統</h1>
+        <p style="text-align: center; font-size: 1.2em; color: #666; margin-bottom: 30px;">
+            <strong>新員工教育訓練教材 v1.0</strong><br>
+            最後更新：2026-02-26
+        </p>
+
+        <!-- 目錄 -->
+        <div class="toc">
+            <h2>📖 目錄</h2>
+            <ul>
+                <li><a href="#intro">1. 系統簡介</a></li>
+                <li><a href="#quick-start">2. 快速開業指南</a></li>
+                <li><a href="#store-management">3. 店家管理</a></li>
+                <li><a href="#ticket-settings">4. 套票設定</a></li>
+                <li><a href="#room-management">5. 包廂管理</a></li>
+                <li><a href="#permission">6. 權限與店員管理</a></li>
+                <li><a href="#voucher">7. 優惠券與電子票券</a></li>
+                <li><a href="#topup">8. 儲值優惠設定</a></li>
+                <li><a href="#marketing">9. 運營活動</a></li>
+                <li><a href="#payment">10. 金流設定</a>
+                    <ul style="padding-left: 20px; margin-top: 5px;">
+                        <li><a href="#payment-blue">10-A. 藍新金流申請</a></li>
+                        <li><a href="#payment-line">10-B. LINE PAY 申請</a></li>
+                    </ul>
+                </li>
+                <li><a href="#booking-settings">11. 預約訂單設置</a></li>
+                <li><a href="#member-level">12. 會員等級規則</a></li>
+                <li><a href="#category">13. 項目分類</a></li>
+                <li><a href="#long-term">14. 長期訂位管理</a></li>
+                <li><a href="#access-log">15. 進出紀錄</a></li>
+                <li><a href="#payment-machine">16. 繳費機使用管理</a></li>
+                <li><a href="#dashboard">17. 首頁儀表板</a></li>
+                <li><a href="#orders">18. 訂單管理</a></li>
+                <li><a href="#members">19. 會員管理</a></li>
+                <li><a href="#devices">20. 設備管理（IoT）</a></li>
+                <li><a href="#ui-settings">21. 版面設定</a></li>
+                <li><a href="#faq">22. 常見問題處理</a></li>
+            </ul>
+        </div>
+
+        <!-- 1. 系統簡介 -->
+        <section id="intro">
+            <h2>1. 系統簡介</h2>
+            
+            <h3>🎯 ONE桌遊商家端是什麼？</h3>
+            <div class="info-box success">
+                <h4>系統定位</h4>
+                <p><strong>ONE桌遊 24H 自助共享管理系統</strong></p>
+                <p><strong>核心功能：</strong>提供商家完整的店務管理、會員管理、設備控制、金流設定等一站式解決方案</p>
+            </div>
+
+            <h3>📱 系統特色</h3>
+            <ul>
+                <li>✅ <strong>24小時自助營運</strong>：支援無人化自助開桌模式</li>
+                <li>✅ <strong>智能設備整合</strong>：IoT 智能門鎖、電源控制、藍牙喇叭等</li>
+                <li>✅ <strong>多店管理</strong>：一個帳號可管理多家分店</li>
+                <li>✅ <strong>即時數據儀表板</strong>：營收、訂單、包廂狀態一目了然</li>
+                <li>✅ <strong>完整會員系統</strong>：會員等級、優惠券、電子票券、儲值管理</li>
+                <li>✅ <strong>金流整合</strong>：藍新金流、LINE PAY、Apple Pay</li>
+                <li>✅ <strong>權限分層管理</strong>：店長、店員、清潔人員不同權限設定</li>
+            </ul>
+
+            <h3>🔧 系統架構</h3>
+            <div class="feature-section">
+                <h4>五大核心模組</h4>
+                <table>
+                    <tr>
+                        <th>模組名稱</th>
+                        <th>主要功能</th>
+                    </tr>
+                    <tr>
+                        <td>🏠 <strong>首頁儀表板</strong></td>
+                        <td>營收統計、包廂即時狀態、預約時間軸</td>
+                    </tr>
+                    <tr>
+                        <td>💎 <strong>會員管理</strong></td>
+                        <td>會員資料、發放卡券、代開包廂、歷史訂單</td>
+                    </tr>
+                    <tr>
+                        <td>📋 <strong>訂單管理</strong></td>
+                        <td>訂單查詢、退款、延長時間、縮短時長</td>
+                    </tr>
+                    <tr>
+                        <td>🔧 <strong>設備管理</strong></td>
+                        <td>IoT 設備控制（門鎖、電源、喇叭）</td>
+                    </tr>
+                    <tr>
+                        <td>👤 <strong>我的（管理中心）</strong></td>
+                        <td>店家設定、權限管理、金流設定、營運活動</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>👥 適用對象</h3>
+            <ul>
+                <li>🏪 <strong>店家負責人</strong>：完整店務管理與經營數據</li>
+                <li>👨‍💼 <strong>店長</strong>：日常營運管理、訂單處理、會員管理</li>
+                <li>👨‍🔧 <strong>一般店員</strong>：訂單查詢、會員服務、包廂狀態管理</li>
+                <li>🧹 <strong>清潔人員</strong>：包廂清潔狀態管理</li>
+                <li>📞 <strong>客服人員</strong>：會員查詢、訂單處理、問題排解</li>
+            </ul>
+
+            <div class="info-box info">
+                <h4>💡 使用前須知</h4>
+                <ul>
+                    <li>本系統需搭配 <strong>ONE桌遊用戶端 APP</strong> 使用（顧客預約介面）</li>
+                    <li>需申請<strong>藍新金流</strong>或 <strong>LINE PAY</strong> 才能接受線上付款</li>
+                    <li>建議搭配 <strong>IoT 智能設備</strong>（門鎖、電源控制器）達到最佳自助化效果</li>
+                    <li>首次使用請依照本文件的「快速開業指南」完成設定</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 2. 快速開業指南 -->
+        <section id="quick-start">
+            <h2>2. 快速開業指南</h2>
+            
+            <div class="info-box warning">
+                <h4>⚠️ 重要提示</h4>
+                <p>請<strong>依序完成</strong>以下所有設定步驟，每個功能設定完成後，請按<strong>「保存」</strong>按鈕。</p>
+            </div>
+
+            <h3>📋 開業前檢查清單</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>步驟</th>
+                        <th>設定項目</th>
+                        <th>完成狀態</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>店家管理（地址、電話、店家封面照片、繳費機照片）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>套票設定（設定常用時長的套票方案）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>包廂管理（會由總部協助開好，僅需添加套票）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>權限管理（新增角色：店長、客服等）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>店員列表（新增員工帳號並分配權限）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>優惠券設定（消費滿額折扣）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>電子票券設定（續時券、活動券）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>儲值優惠（儲值送金額設定）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>運營活動（首次消費送券、分享獎勵）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>藍新金流申請（或 LINE PAY）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>支付配置（由總部協助設定）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>預約訂單設置（取消規則、下單須知）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>會員等級規則（折扣設定）</td>
+                        <td>☐</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>繳費機使用管理（首次硬幣數量設定）</td>
+                        <td>☐</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>⏱️ 預估設定時間</h3>
+            <ul>
+                <li>📌 <strong>基礎設定</strong>（步驟 1-5）：約 1-2 小時</li>
+                <li>📌 <strong>行銷設定</strong>（步驟 6-9）：約 30-60 分鐘</li>
+                <li>📌 <strong>金流申請</strong>（步驟 10-11）：5-7 個工作天（等待審核）</li>
+                <li>📌 <strong>進階設定</strong>（步驟 12-14）：約 30 分鐘</li>
+            </ul>
+
+            <div class="info-box success">
+                <h4>✅ 開業準備完成後</h4>
+                <p>請聯繫 <strong>ONE桌遊總部</strong>進行最終確認：</p>
+                <ul>
+                    <li>📱 官方 LINE：<code>@949eojbg</code></li>
+                    <li>📞 客服電話：中午 12:00 ~ 晚上 12:00</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 3. 店家管理 -->
+        <section id="store-management">
+            <h2>3. 店家管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>店家管理</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>店家管理是設定<strong>店家基本資訊</strong>的地方，包含地址、電話、營業時間、封面照片等，這些資訊會顯示在用戶端 APP 的店家頁面。</p>
+
+            <div class="info-box warning">
+                <h4>⚠️ 重要提醒</h4>
+                <p>店家資訊會直接影響顧客的第一印象，請務必填寫完整且正確！</p>
+            </div>
+
+            <h3>📝 必填欄位</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>欄位名稱</th>
+                        <th>說明</th>
+                        <th>範例</th>
+                    </tr>
+                    <tr>
+                        <td><strong>店家名稱</strong></td>
+                        <td>顯示在 APP 上的店名</td>
+                        <td>ONE桌遊-台北信義店</td>
+                    </tr>
+                    <tr>
+                        <td><strong>店家地址</strong></td>
+                        <td>完整地址（含縣市、區、路街號）</td>
+                        <td>台北市信義區信義路五段7號</td>
+                    </tr>
+                    <tr>
+                        <td><strong>聯絡電話</strong></td>
+                        <td>顧客可撥打的客服電話</td>
+                        <td>02-1234-5678</td>
+                    </tr>
+                    <tr>
+                        <td><strong>營業時間</strong></td>
+                        <td>24 小時制，可設定不同時段</td>
+                        <td>00:00 - 24:00（24小時營業）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>店家封面照片</strong></td>
+                        <td>用戶端首頁顯示的橫幅照片</td>
+                        <td>建議尺寸 1200×600 px</td>
+                    </tr>
+                    <tr>
+                        <td><strong>繳費機照片</strong></td>
+                        <td>店內繳費機位置的照片（方便顧客找到）</td>
+                        <td>建議拍攝繳費機與周邊環境</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🖼️ 照片上傳建議</h3>
+            <ul>
+                <li>✅ <strong>店家封面</strong>：展現店內環境、包廂氛圍</li>
+                <li>✅ <strong>繳費機照片</strong>：清楚標示位置，最好包含明顯地標</li>
+                <li>✅ <strong>照片大小</strong>：建議 500KB 以內（系統會自動壓縮）</li>
+                <li>✅ <strong>照片格式</strong>：JPG、PNG 皆可</li>
+            </ul>
+
+            <h3>⚙️ 操作步驟</h3>
+            <ol class="step-list">
+                <li>點選底部導航列「<strong>我的</strong>」</li>
+                <li>點選「<strong>店家管理</strong>」</li>
+                <li>填寫店家基本資訊（名稱、地址、電話、營業時間）</li>
+                <li>上傳店家封面照片</li>
+                <li>上傳繳費機照片</li>
+                <li>點擊「<strong>保存</strong>」按鈕</li>
+            </ol>
+
+            <div class="info-box success">
+                <h4>✅ 完成確認</h4>
+                <p>設定完成後，請至<strong>用戶端 APP</strong> 檢查店家資訊是否正確顯示。</p>
+            </div>
+        </section>
+
+        <!-- 4. 套票設定 -->
+        <section id="ticket-settings">
+            <h2>4. 套票設定</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>套票設定</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>套票是顧客預約包廂時可選擇的<strong>時段方案</strong>，例如「2小時 $200」、「4小時 $350」等。</p>
+            <p><strong>套票 ≠ 包廂</strong>，套票是<strong>時長與價格的組合</strong>，可綁定到多個包廂。</p>
+
+            <h3>📋 套票範例</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>套票名稱</th>
+                        <th>時長</th>
+                        <th>價格</th>
+                        <th>適用場景</th>
+                    </tr>
+                    <tr>
+                        <td>快閃方案</td>
+                        <td>1 小時</td>
+                        <td>$120</td>
+                        <td>短暫聚會、試玩</td>
+                    </tr>
+                    <tr>
+                        <td>標準方案</td>
+                        <td>2 小時</td>
+                        <td>$200</td>
+                        <td>一般打牌時長</td>
+                    </tr>
+                    <tr>
+                        <td>歡樂方案</td>
+                        <td>4 小時</td>
+                        <td>$350</td>
+                        <td>長時間聚會</td>
+                    </tr>
+                    <tr>
+                        <td>通宵方案</td>
+                        <td>8 小時</td>
+                        <td>$600</td>
+                        <td>深夜至清晨</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔧 套票設定項目</h3>
+            <div class="feature-section">
+                <h4>必填欄位</h4>
+                <ul>
+                    <li><strong>套票名稱</strong>：顯示在用戶端的名稱（例：歡樂4小時）</li>
+                    <li><strong>時長</strong>：以小時為單位（支援 1-24 小時）</li>
+                    <li><strong>價格</strong>：新台幣（NT$）</li>
+                    <li><strong>是否啟用</strong>：關閉後，用戶端不會顯示此套票</li>
+                </ul>
+
+                <h4>選填欄位</h4>
+                <ul>
+                    <li><strong>優惠價</strong>：設定促銷價格（會顯示原價刪除線）</li>
+                    <li><strong>適用時段</strong>：例如僅限平日、僅限假日等</li>
+                    <li><strong>套票說明</strong>：補充說明（例：含飲料一杯）</li>
+                </ul>
+            </div>
+
+            <h3>⚙️ 操作步驟</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>套票設定</strong>」</li>
+                <li>點擊「<strong>新增套票</strong>」按鈕</li>
+                <li>填寫套票名稱、時長、價格</li>
+                <li>設定是否啟用（預設為啟用）</li>
+                <li>（選填）設定優惠價或適用時段</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 套票規劃建議</h4>
+                <ul>
+                    <li>建議至少設定 <strong>3-5 種套票</strong>（涵蓋短、中、長時段）</li>
+                    <li>價格設定可參考「<strong>每小時 $80-120</strong>」的定價</li>
+                    <li>長時段套票可設定<strong>優惠價</strong>，吸引長時間消費</li>
+                    <li>假日/平日可設定<strong>不同價格</strong>（需使用「適用時段」功能）</li>
+                </ul>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 注意事項</h4>
+                <ul>
+                    <li>套票設定後，需至「<strong>包廂管理</strong>」將套票綁定到包廂</li>
+                    <li>已綁定包廂的套票<strong>無法刪除</strong>（僅能停用）</li>
+                    <li>修改套票價格<strong>不會影響已成立的訂單</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 5. 包廂管理 -->
+        <section id="room-management">
+            <h2>5. 包廂管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>包廂管理</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>包廂管理用於設定每個包廂的<strong>名稱、可綁定套票、照片、設備資訊</strong>等。</p>
+            <p><strong>包廂通常由總部協助建立</strong>（依據現場裝潢平面圖），店家主要負責<strong>綁定套票與上傳照片</strong>。</p>
+
+            <h3>📋 包廂資訊欄位</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>欄位名稱</th>
+                        <th>說明</th>
+                        <th>編輯權限</th>
+                    </tr>
+                    <tr>
+                        <td><strong>包廂編號</strong></td>
+                        <td>系統自動編號（例：101、102...）</td>
+                        <td>🔒 總部設定</td>
+                    </tr>
+                    <tr>
+                        <td><strong>包廂名稱</strong></td>
+                        <td>顯示名稱（例：風雲再起、天龍八部）</td>
+                        <td>✅ 可編輯</td>
+                    </tr>
+                    <tr>
+                        <td><strong>包廂照片</strong></td>
+                        <td>包廂內部照片（用戶端顯示）</td>
+                        <td>✅ 可編輯</td>
+                    </tr>
+                    <tr>
+                        <td><strong>可選套票</strong></td>
+                        <td>勾選此包廂可使用的套票</td>
+                        <td>✅ 可編輯</td>
+                    </tr>
+                    <tr>
+                        <td><strong>設備清單</strong></td>
+                        <td>門鎖、電源、喇叭等 IoT 設備綁定</td>
+                        <td>🔒 總部設定</td>
+                    </tr>
+                    <tr>
+                        <td><strong>是否啟用</strong></td>
+                        <td>關閉後，用戶端無法預約此包廂</td>
+                        <td>✅ 可編輯</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>⚙️ 操作步驟：綁定套票</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>包廂管理</strong>」</li>
+                <li>選擇要編輯的包廂</li>
+                <li>勾選「<strong>可選套票</strong>」（可多選）</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>📷 上傳包廂照片</h3>
+            <ol class="step-list">
+                <li>進入包廂編輯頁面</li>
+                <li>點擊「<strong>上傳照片</strong>」按鈕</li>
+                <li>選擇照片（建議 800×600 px 以上）</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 照片拍攝建議</h4>
+                <ul>
+                    <li>✅ <strong>光線充足</strong>：避免陰暗或曝光不足</li>
+                    <li>✅ <strong>整潔乾淨</strong>：拍攝前整理包廂</li>
+                    <li>✅ <strong>展現特色</strong>：拍攝麻將桌、沙發、裝潢等亮點</li>
+                    <li>✅ <strong>角度選擇</strong>：建議從門口往內拍，展現整體空間</li>
+                </ul>
+            </div>
+
+            <h3>🔧 啟用 / 停用包廂</h3>
+            <div class="feature-section">
+                <h4>何時需要停用包廂？</h4>
+                <ul>
+                    <li>🔧 設備維修中（門鎖故障、冷氣故障）</li>
+                    <li>🚧 包廂整修施工</li>
+                    <li>🧹 深度清潔暫停開放</li>
+                </ul>
+
+                <h4>停用步驟</h4>
+                <ol>
+                    <li>進入包廂編輯頁面</li>
+                    <li>將「<strong>是否啟用</strong>」設為<strong>關閉</strong></li>
+                    <li>點擊「<strong>保存</strong>」</li>
+                </ol>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 注意事項</h4>
+                <ul>
+                    <li>停用包廂後，已預約的訂單<strong>不受影響</strong>（依然有效）</li>
+                    <li>新顧客<strong>無法預約</strong>已停用的包廂</li>
+                    <li>若包廂有進行中訂單，建議<strong>待訂單結束後再停用</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 6. 權限與店員管理 -->
+        <section id="permission">
+            <h2>6. 權限與店員管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>權限管理</code> / <code>店員列表</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>權限管理用於設定<strong>不同角色的操作權限</strong>，店員列表用於<strong>新增員工帳號並分配角色</strong>。</p>
+
+            <h3>👥 預設角色與權限</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>角色名稱</th>
+                        <th>權限範圍</th>
+                        <th>適用對象</th>
+                    </tr>
+                    <tr>
+                        <td><strong>店主</strong></td>
+                        <td>🔓 所有功能（含金流設定、權限管理）</td>
+                        <td>店家負責人</td>
+                    </tr>
+                    <tr>
+                        <td><strong>店長</strong></td>
+                        <td>✅ 訂單管理、會員管理、包廂管理<br>❌ 金流設定、權限管理</td>
+                        <td>店長、主管</td>
+                    </tr>
+                    <tr>
+                        <td><strong>店員</strong></td>
+                        <td>✅ 訂單查詢、會員查詢<br>❌ 無法修改設定</td>
+                        <td>一般店員</td>
+                    </tr>
+                    <tr>
+                        <td><strong>清潔人員</strong></td>
+                        <td>✅ 查看包廂狀態、標記清潔完成<br>❌ 無法查看訂單金額</td>
+                        <td>清潔人員</td>
+                    </tr>
+                    <tr>
+                        <td><strong>客服</strong></td>
+                        <td>✅ 會員管理、訂單處理、發放卡券<br>❌ 無法修改店家設定</td>
+                        <td>客服人員</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔧 新增自訂角色</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>權限管理</strong>」</li>
+                <li>點擊「<strong>新增角色</strong>」</li>
+                <li>輸入角色名稱（例：夜班主管）</li>
+                <li>勾選允許的功能權限</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>👤 新增店員帳號</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>店員列表</strong>」</li>
+                <li>點擊「<strong>新增店員</strong>」</li>
+                <li>填寫店員資料：
+                    <ul>
+                        <li>姓名</li>
+                        <li>手機號碼（作為登入帳號）</li>
+                        <li>選擇角色（店長、店員、清潔人員等）</li>
+                    </ul>
+                </li>
+                <li>點擊「<strong>保存</strong>」</li>
+                <li>系統會發送<strong>簡訊</strong>通知店員（含初始密碼）</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 初始密碼說明</h4>
+                <p>新增店員後，系統會自動產生<strong>隨機密碼</strong>並透過簡訊發送。</p>
+                <p>店員首次登入後，<strong>必須修改密碼</strong>才能繼續使用。</p>
+            </div>
+
+            <h3>🔄 修改店員角色</h3>
+            <ol class="step-list">
+                <li>進入「<strong>店員列表</strong>」</li>
+                <li>點選要修改的店員</li>
+                <li>更改「<strong>角色</strong>」欄位</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🗑️ 停用 / 刪除店員</h3>
+            <div class="feature-section">
+                <h4>停用 vs 刪除</h4>
+                <table>
+                    <tr>
+                        <th>操作</th>
+                        <th>效果</th>
+                        <th>適用場景</th>
+                    </tr>
+                    <tr>
+                        <td><strong>停用</strong></td>
+                        <td>帳號保留，但無法登入</td>
+                        <td>員工暫時離職、休假</td>
+                    </tr>
+                    <tr>
+                        <td><strong>刪除</strong></td>
+                        <td>帳號永久移除</td>
+                        <td>員工已離職且確認不再回任</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 安全建議</h4>
+                <ul>
+                    <li>🔐 <strong>店主帳號</strong>不應分享給他人</li>
+                    <li>🔐 離職員工請<strong>立即停用或刪除</strong>帳號</li>
+                    <li>🔐 定期檢查「店員列表」，確認無多餘帳號</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 7. 優惠券與電子票券 -->
+        <section id="voucher">
+            <h2>7. 優惠券與電子票券</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>優惠券設定</code> / <code>電子票券設定</code></p>
+
+            <h3>🎯 兩者差異</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>類型</th>
+                        <th>功能</th>
+                        <th>範例</th>
+                    </tr>
+                    <tr>
+                        <td><strong>優惠券</strong></td>
+                        <td>結帳時<strong>折扣</strong>（滿額折、折扣碼）</td>
+                        <td>滿 $500 折 $50</td>
+                    </tr>
+                    <tr>
+                        <td><strong>電子票券</strong></td>
+                        <td>可兌換<strong>實際商品或服務</strong></td>
+                        <td>續時券（兌換1小時）、免費券</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🎫 優惠券設定</h3>
+            <h4>優惠券類型</h4>
+            <ul>
+                <li><strong>滿額折</strong>：消費滿 $X 折 $Y（例：滿500折50）</li>
+                <li><strong>折扣碼</strong>：輸入代碼享優惠（例：NEW100 折 $100）</li>
+                <li><strong>百分比折扣</strong>：全單打 X 折（例：8折券）</li>
+            </ul>
+
+            <h4>設定步驟</h4>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>優惠券設定</strong>」</li>
+                <li>點擊「<strong>新增優惠券</strong>」</li>
+                <li>填寫優惠券資訊：
+                    <ul>
+                        <li>優惠券名稱（例：新客首購優惠）</li>
+                        <li>優惠類型（滿額折、折扣碼、百分比）</li>
+                        <li>折扣金額或折扣百分比</li>
+                        <li>有效期限</li>
+                        <li>使用條件（最低消費金額）</li>
+                    </ul>
+                </li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🎟️ 電子票券設定</h3>
+            <h4>票券類型範例</h4>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>票券名稱</th>
+                        <th>兌換內容</th>
+                        <th>適用場景</th>
+                    </tr>
+                    <tr>
+                        <td>續時券 1H</td>
+                        <td>延長1小時</td>
+                        <td>活動贈送、會員福利</td>
+                    </tr>
+                    <tr>
+                        <td>續時券 2H</td>
+                        <td>延長2小時</td>
+                        <td>VIP會員專屬</td>
+                    </tr>
+                    <tr>
+                        <td>免費體驗券</td>
+                        <td>免費使用2小時</td>
+                        <td>新客推廣、試營運</td>
+                    </tr>
+                    <tr>
+                        <td>飲料兌換券</td>
+                        <td>兌換指定飲料一杯</td>
+                        <td>消費滿額贈送</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h4>設定步驟</h4>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>電子票券設定</strong>」</li>
+                <li>點擊「<strong>新增票券</strong>」</li>
+                <li>填寫票券資訊：
+                    <ul>
+                        <li>票券名稱（例：續時券1H）</li>
+                        <li>票券說明（兌換內容）</li>
+                        <li>有效期限</li>
+                        <li>是否可與優惠券同時使用</li>
+                    </ul>
+                </li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🎁 如何發放券給會員？</h3>
+            <div class="feature-section">
+                <h4>方法一：手動發放（個別會員）</h4>
+                <ol>
+                    <li>進入「<strong>會員管理</strong>」</li>
+                    <li>搜尋並點選會員</li>
+                    <li>點擊「<strong>發放卡券</strong>」</li>
+                    <li>選擇要發放的優惠券或電子票券</li>
+                    <li>填寫數量</li>
+                    <li>點擊「<strong>確認發放</strong>」</li>
+                </ol>
+
+                <h4>方法二:自動發放（運營活動）</h4>
+                <p>透過「<strong>運營活動</strong>」設定觸發條件（例：首次消費送續時券），詳見本文件第 9 章。</p>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 優惠策略建議</h4>
+                <ul>
+                    <li>✅ <strong>新客首購</strong>：發放折扣券吸引首次消費</li>
+                    <li>✅ <strong>生日禮</strong>：會員生日月發放續時券</li>
+                    <li>✅ <strong>滿額贈</strong>：消費滿 $1,000 送續時券 1H</li>
+                    <li>✅ <strong>好友推薦</strong>：推薦新會員各得 $100 折扣券</li>
+                </ul>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 注意事項</h4>
+                <ul>
+                    <li>已發放的券<strong>無法收回</strong></li>
+                    <li>券過期後自動失效，會員無法使用</li>
+                    <li>建議定期檢查券的<strong>使用率</strong>，調整發放策略</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 8. 儲值優惠設定 -->
+        <section id="topup">
+            <h2>8. 儲值優惠設定</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>儲值優惠</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>儲值優惠是鼓勵會員<strong>預先儲值</strong>的促銷方案，例如「儲值 $1,000 送 $100」。</p>
+            <p>會員儲值後，餘額存於<strong>本店帳戶</strong>，僅能在本店使用（<strong>不可跨店</strong>）。</p>
+
+            <h3>💰 儲值方案範例</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>方案名稱</th>
+                        <th>儲值金額</th>
+                        <th>贈送金額</th>
+                        <th>實際可用</th>
+                    </tr>
+                    <tr>
+                        <td>小額儲值</td>
+                        <td>$500</td>
+                        <td>+$30</td>
+                        <td>$530</td>
+                    </tr>
+                    <tr>
+                        <td>標準儲值</td>
+                        <td>$1,000</td>
+                        <td>+$100</td>
+                        <td>$1,100</td>
+                    </tr>
+                    <tr>
+                        <td>超值儲值</td>
+                        <td>$2,000</td>
+                        <td>+$300</td>
+                        <td>$2,300</td>
+                    </tr>
+                    <tr>
+                        <td>VIP 儲值</td>
+                        <td>$5,000</td>
+                        <td>+$1,000</td>
+                        <td>$6,000</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>⚙️ 設定步驟</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>儲值優惠</strong>」</li>
+                <li>點擊「<strong>新增方案</strong>」</li>
+                <li>填寫方案資訊：
+                    <ul>
+                        <li>方案名稱（例：超值儲值）</li>
+                        <li>儲值金額（會員實際支付）</li>
+                        <li>贈送金額（額外贈送）</li>
+                        <li>是否啟用</li>
+                    </ul>
+                </li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>📊 餘額查詢與管理</h3>
+            <div class="feature-section">
+                <h4>會員如何查詢餘額？</h4>
+                <p>會員可在<strong>用戶端 APP</strong> → 「個人中心」→「本店餘額」查看。</p>
+
+                <h4>店家如何查詢會員餘額？</h4>
+                <ol>
+                    <li>進入「<strong>會員管理</strong>」</li>
+                    <li>搜尋並點選會員</li>
+                    <li>查看「<strong>本店餘額</strong>」欄位</li>
+                </ol>
+            </div>
+
+            <h3>🔄 餘額退款處理</h3>
+            <div class="info-box warning">
+                <h4>⚠️ 重要政策</h4>
+                <p>根據消費者保護法，會員儲值餘額可要求退款（需扣除已使用金額）。</p>
+            </div>
+
+            <ol class="step-list">
+                <li>會員提出退款申請（電話、LINE 或現場）</li>
+                <li>進入「<strong>會員管理</strong>」查詢該會員餘額</li>
+                <li>確認餘額金額</li>
+                <li>聯繫<strong>ONE桌遊總部</strong>協助處理退款</li>
+                <li>退款完成後，系統會自動扣除會員餘額</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 儲值行銷策略</h4>
+                <ul>
+                    <li>✅ <strong>階梯式贈送</strong>：儲值越多，贈送比例越高</li>
+                    <li>✅ <strong>限時優惠</strong>：週年慶、開幕期間加碼贈送</li>
+                    <li>✅ <strong>VIP 專屬</strong>：高等級會員享更高贈送比例</li>
+                    <li>✅ <strong>推薦獎勵</strong>：推薦朋友儲值，雙方各得獎勵金</li>
+                </ul>
+            </div>
+
+            <div class="info-box success">
+                <h4>✅ 儲值的好處</h4>
+                <ul>
+                    <li>💵 <strong>鎖定客群</strong>：儲值會員更可能再次光顧</li>
+                    <li>💵 <strong>現金流穩定</strong>：預收款項，改善資金周轉</li>
+                    <li>💵 <strong>提升客單價</strong>：會員有餘額時消費意願更高</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 9. 運營活動 -->
+        <section id="marketing">
+            <h2>9. 運營活動</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>運營活動</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>運營活動用於設定<strong>自動化行銷規則</strong>，當會員符合條件時，系統自動發放獎勵（優惠券、電子票券、儲值金等）。</p>
+
+            <h3>📋 內建活動類型</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>活動類型</th>
+                        <th>觸發條件</th>
+                        <th>獎勵範例</th>
+                    </tr>
+                    <tr>
+                        <td><strong>首次消費獎勵</strong></td>
+                        <td>會員首次在本店下單</td>
+                        <td>送續時券 1H</td>
+                    </tr>
+                    <tr>
+                        <td><strong>分享獎勵</strong></td>
+                        <td>會員分享店家連結給朋友</td>
+                        <td>送 $50 折扣券</td>
+                    </tr>
+                    <tr>
+                        <td><strong>生日禮</strong></td>
+                        <td>會員生日當月</td>
+                        <td>送續時券 2H</td>
+                    </tr>
+                    <tr>
+                        <td><strong>滿額贈</strong></td>
+                        <td>單筆消費滿 $X</td>
+                        <td>送電子票券或折扣券</td>
+                    </tr>
+                    <tr>
+                        <td><strong>推薦好友</strong></td>
+                        <td>推薦新會員註冊並消費</td>
+                        <td>推薦人與新會員各得 $100</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>⚙️ 設定步驟</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>運營活動</strong>」</li>
+                <li>點擊「<strong>新增活動</strong>」</li>
+                <li>選擇活動類型（首次消費、分享、生日禮等）</li>
+                <li>設定觸發條件（例：首次消費、消費滿 $500）</li>
+                <li>設定獎勵內容：
+                    <ul>
+                        <li>優惠券</li>
+                        <li>電子票券</li>
+                        <li>儲值金</li>
+                    </ul>
+                </li>
+                <li>設定活動期限（例：2026/03/01 - 2026/03/31）</li>
+                <li>點擊「<strong>保存</strong>」並啟用</li>
+            </ol>
+
+            <h3>🎁 範例：首次消費送續時券</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>設定項目</th>
+                        <th>設定值</th>
+                    </tr>
+                    <tr>
+                        <td>活動名稱</td>
+                        <td>新客首購好禮</td>
+                    </tr>
+                    <tr>
+                        <td>活動類型</td>
+                        <td>首次消費獎勵</td>
+                    </tr>
+                    <tr>
+                        <td>觸發條件</td>
+                        <td>會員首次在本店下單並完成付款</td>
+                    </tr>
+                    <tr>
+                        <td>獎勵內容</td>
+                        <td>續時券 1H × 1 張</td>
+                    </tr>
+                    <tr>
+                        <td>活動期限</td>
+                        <td>2026/03/01 - 2026/12/31</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>📊 活動成效追蹤</h3>
+            <div class="feature-section">
+                <h4>可查看的數據</h4>
+                <ul>
+                    <li>📈 <strong>參與人數</strong>：有多少會員符合條件</li>
+                    <li>📈 <strong>發放數量</strong>：總共發出多少獎勵</li>
+                    <li>📈 <strong>使用率</strong>：獎勵的使用比例</li>
+                    <li>📈 <strong>帶來營收</strong>：活動帶來的額外消費金額</li>
+                </ul>
+
+                <h4>查看步驟</h4>
+                <ol>
+                    <li>進入「<strong>運營活動</strong>」</li>
+                    <li>點選要查看的活動</li>
+                    <li>點擊「<strong>數據報表</strong>」</li>
+                </ol>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 行銷活動建議</h4>
+                <ul>
+                    <li>✅ <strong>開幕期</strong>：首次消費送大禮，快速累積會員</li>
+                    <li>✅ <strong>淡季促銷</strong>：平日儲值加碼、續時券發放</li>
+                    <li>✅ <strong>節慶行銷</strong>：春節、中秋、聖誕等特殊節日活動</li>
+                    <li>✅ <strong>會員分級</strong>：VIP 會員享更高回饋</li>
+                </ul>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 注意事項</h4>
+                <ul>
+                    <li>活動啟用後，符合條件的會員<strong>自動獲得獎勵</strong></li>
+                    <li>活動期限到期後，系統會自動停止發放</li>
+                    <li>建議定期檢視活動成效，調整策略</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 10. 金流設定 -->
+        <section id="payment">
+            <h2>10. 金流設定</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>支付配置</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>金流設定用於串接<strong>第三方支付服務</strong>，讓顧客可透過信用卡、LINE PAY、Apple Pay 等方式線上付款。</p>
+            <p><strong>ONE桌遊系統支援：</strong></p>
+            <ul>
+                <li>✅ <strong>藍新金流</strong>（Neweb Pay）</li>
+                <li>✅ <strong>LINE PAY</strong></li>
+            </ul>
+
+            <div class="info-box warning">
+                <h4>⚠️ 重要提醒</h4>
+                <p>金流申請需要<strong>公司營業登記</strong>，個人無法申請。</p>
+                <p>申請審核時間約 <strong>5-7 個工作天</strong>，請提前準備。</p>
+            </div>
+
+            <h3>💳 支付方式比較</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>金流服務</th>
+                        <th>手續費</th>
+                        <th>支援付款方式</th>
+                        <th>適用對象</th>
+                    </tr>
+                    <tr>
+                        <td><strong>藍新金流</strong></td>
+                        <td>2.8% - 3.2%</td>
+                        <td>信用卡、ATM、超商代碼</td>
+                        <td>所有店家</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LINE PAY</strong></td>
+                        <td>2.5% - 3.0%</td>
+                        <td>LINE PAY、信用卡</td>
+                        <td>重視 LINE 生態圈的店家</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 建議</h4>
+                <p>建議<strong>同時申請</strong>藍新金流與 LINE PAY，提供顧客更多付款選擇。</p>
+            </div>
+        </section>
+
+        <!-- 10-A. 藍新金流申請 -->
+        <section id="payment-blue">
+            <h3>10-A. 藍新金流申請</h3>
+            
+            <h4>📋 申請前準備</h4>
+            <ul>
+                <li>✅ 公司營業登記證明</li>
+                <li>✅ 負責人身分證</li>
+                <li>✅ 公司銀行帳戶（撥款用）</li>
+                <li>✅ 公司大小章</li>
+            </ul>
+
+            <h4>⚙️ 申請步驟</h4>
+            <ol class="step-list">
+                <li>前往<strong>藍新金流官網</strong>：<code>https://www.newebpay.com/</code></li>
+                <li>點擊「<strong>商店申請</strong>」</li>
+                <li>填寫基本資料（公司名稱、統編、地址、負責人）</li>
+                <li>上傳證明文件（營業登記證、身分證）</li>
+                <li>設定收款銀行帳戶</li>
+                <li>提交申請並等待審核（約 5-7 個工作天）</li>
+                <li>審核通過後，藍新金流會寄送<strong>商店代號</strong>與<strong>HashKey / HashIV</strong></li>
+            </ol>
+
+            <h4>🔧 將藍新金流串接到 ONE桌遊系統</h4>
+            <ol class="step-list">
+                <li>取得藍新金流提供的：
+                    <ul>
+                        <li><code>商店代號（MerchantID）</code></li>
+                        <li><code>HashKey</code></li>
+                        <li><code>HashIV</code></li>
+                    </ul>
+                </li>
+                <li>聯繫<strong>ONE桌遊總部</strong>提供上述資料</li>
+                <li>總部協助完成系統串接設定</li>
+                <li>測試付款流程（小額測試訂單）</li>
+                <li>確認無誤後正式啟用</li>
+            </ol>
+
+            <div class="info-box success">
+                <h4>✅ 設定完成確認</h4>
+                <p>設定完成後，請至用戶端 APP 測試下單，確認可正常跳轉至付款頁面。</p>
+            </div>
+        </section>
+
+        <!-- 10-B. LINE PAY 申請 -->
+        <section id="payment-line">
+            <h3>10-B. LINE PAY 申請</h3>
+            
+            <h4>📋 申請前準備</h4>
+            <ul>
+                <li>✅ 公司營業登記證明</li>
+                <li>✅ 負責人身分證</li>
+                <li>✅ 公司銀行帳戶</li>
+                <li>✅ LINE 官方帳號（建議先申請）</li>
+            </ul>
+
+            <h4>⚙️ 申請步驟</h4>
+            <ol class="step-list">
+                <li>前往<strong>LINE PAY 商家中心</strong>：<code>https://pay.line.me/tw/merchants</code></li>
+                <li>點擊「<strong>立即申請</strong>」</li>
+                <li>填寫商家資料（公司名稱、統編、營業項目）</li>
+                <li>上傳證明文件</li>
+                <li>設定收款帳戶</li>
+                <li>提交申請並等待審核（約 5-7 個工作天）</li>
+                <li>審核通過後，LINE PAY 會提供<strong>Channel ID</strong> 與 <strong>Channel Secret Key</strong></li>
+            </ol>
+
+            <h4>🔧 將 LINE PAY 串接到 ONE桌遊系統</h4>
+            <ol class="step-list">
+                <li>取得 LINE PAY 提供的：
+                    <ul>
+                        <li><code>Channel ID</code></li>
+                        <li><code>Channel Secret Key</code></li>
+                    </ul>
+                </li>
+                <li>聯繫<strong>ONE桌遊總部</strong>提供上述資料</li>
+                <li>總部協助完成系統串接設定</li>
+                <li>測試付款流程</li>
+                <li>確認無誤後正式啟用</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 LINE PAY 的優勢</h4>
+                <ul>
+                    <li>✅ 台灣用戶普及率高（超過 80% 使用 LINE）</li>
+                    <li>✅ 付款流程簡單（LINE APP 內完成）</li>
+                    <li>✅ 可整合 LINE 官方帳號行銷</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 11. 預約訂單設置 -->
+        <section id="booking-settings">
+            <h2>11. 預約訂單設置</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>預約訂單設置</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>預約訂單設置用於設定<strong>預約規則、取消政策、下單須知</strong>等，這些規則會顯示在用戶端 APP 的預約頁面。</p>
+
+            <h3>📋 設定項目</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>設定項目</th>
+                        <th>說明</th>
+                        <th>建議設定</th>
+                    </tr>
+                    <tr>
+                        <td><strong>可預約天數</strong></td>
+                        <td>最多可預約幾天後的包廂</td>
+                        <td>30-60 天</td>
+                    </tr>
+                    <tr>
+                        <td><strong>最短預約時長</strong></td>
+                        <td>最少需訂幾小時</td>
+                        <td>1 小時</td>
+                    </tr>
+                    <tr>
+                        <td><strong>最長預約時長</strong></td>
+                        <td>最多可訂幾小時</td>
+                        <td>8-12 小時</td>
+                    </tr>
+                    <tr>
+                        <td><strong>取消訂單規則</strong></td>
+                        <td>多久前可免費取消</td>
+                        <td>開始前 2 小時</td>
+                    </tr>
+                    <tr>
+                        <td><strong>逾時付款規則</strong></td>
+                        <td>下單後多久未付款自動取消</td>
+                        <td>10 分鐘</td>
+                    </tr>
+                    <tr>
+                        <td><strong>下單須知</strong></td>
+                        <td>顧客下單前需同意的注意事項</td>
+                        <td>自訂文字說明</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔧 取消訂單規則詳解</h3>
+            <div class="feature-section">
+                <h4>範例設定</h4>
+                <ul>
+                    <li><strong>規則 1</strong>：開始前 <strong>2 小時以上</strong>取消 → 全額退款</li>
+                    <li><strong>規則 2</strong>：開始前 <strong>2 小時內</strong>取消 → 不退款（金額轉為本店餘額）</li>
+                    <li><strong>規則 3</strong>：訂單<strong>已開始</strong> → 無法取消</li>
+                </ul>
+
+                <h4>為什麼需要取消規則？</h4>
+                <p>避免顧客臨時取消造成包廂空置，影響店家營收。</p>
+            </div>
+
+            <h3>📝 下單須知範例</h3>
+            <div class="feature-section">
+                <p><strong>建議內容：</strong></p>
+                <ul>
+                    <li>✅ 請準時到場，逾時不候</li>
+                    <li>✅ 包廂內禁止吸菸、飲食（若店內有規定）</li>
+                    <li>✅ 請愛護設備，損壞需照價賠償</li>
+                    <li>✅ 訂單開始前 2 小時內取消，不予退款</li>
+                    <li>✅ 如需延長時間，請至 APP 操作續時</li>
+                </ul>
+            </div>
+
+            <h3>⚙️ 操作步驟</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>預約訂單設置</strong>」</li>
+                <li>填寫各項設定：
+                    <ul>
+                        <li>可預約天數</li>
+                        <li>最短/最長預約時長</li>
+                        <li>取消訂單規則</li>
+                        <li>逾時付款規則</li>
+                    </ul>
+                </li>
+                <li>編輯「<strong>下單須知</strong>」內容</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <div class="info-box warning">
+                <h4>⚠️ 法律提醒</h4>
+                <p>根據消費者保護法，若顧客主動取消訂單且符合退款條件，店家<strong>必須退款</strong>。</p>
+                <p>建議明確告知取消規則，避免糾紛。</p>
+            </div>
+        </section>
+
+        <!-- 12. 會員等級規則 -->
+        <section id="member-level">
+            <h2>12. 會員等級規則</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>會員等級規則</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>會員等級規則用於設定<strong>不同等級會員的升級條件與折扣優惠</strong>。</p>
+            <p>會員累積消費金額達標後，系統會<strong>自動升級</strong>會員等級。</p>
+
+            <h3>📊 預設會員等級</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>等級名稱</th>
+                        <th>升級條件</th>
+                        <th>折扣優惠</th>
+                    </tr>
+                    <tr>
+                        <td>🥉 銅牌會員</td>
+                        <td>累積消費 $0（註冊即可）</td>
+                        <td>無折扣</td>
+                    </tr>
+                    <tr>
+                        <td>🥈 銀牌會員</td>
+                        <td>累積消費 $1,000</td>
+                        <td>全單 95 折</td>
+                    </tr>
+                    <tr>
+                        <td>🥇 金牌會員</td>
+                        <td>累積消費 $3,000</td>
+                        <td>全單 9 折</td>
+                    </tr>
+                    <tr>
+                        <td>💎 鑽石會員</td>
+                        <td>累積消費 $5,000</td>
+                        <td>全單 85 折</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔧 自訂會員等級</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>會員等級規則</strong>」</li>
+                <li>點擊「<strong>編輯等級</strong>」</li>
+                <li>修改等級名稱、升級條件、折扣比例</li>
+                <li>（選填）新增更多等級</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>💡 折扣計算方式</h3>
+            <div class="feature-section">
+                <h4>範例</h4>
+                <ul>
+                    <li><strong>原價</strong>：$200（2 小時標準方案）</li>
+                    <li><strong>會員等級</strong>：金牌會員（9 折）</li>
+                    <li><strong>實付金額</strong>：$200 × 0.9 = <strong>$180</strong></li>
+                </ul>
+
+                <h4>折扣疊加規則</h4>
+                <p><strong>會員折扣</strong>與<strong>優惠券</strong>可同時使用（依系統設定）。</p>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 會員等級策略建議</h4>
+                <ul>
+                    <li>✅ <strong>階梯式設計</strong>：等級越高，折扣越大</li>
+                    <li>✅ <strong>生日特權</strong>：高等級會員生日月額外優惠</li>
+                    <li>✅ <strong>專屬活動</strong>：VIP 會員優先預約熱門時段</li>
+                    <li>✅ <strong>年度重設</strong>：可設定每年重新計算消費金額（維持活躍度）</li>
+                </ul>
+            </div>
+
+            <div class="info-box success">
+                <h4>✅ 會員等級的好處</h4>
+                <ul>
+                    <li>📈 <strong>提升忠誠度</strong>：會員為了升級會增加消費頻率</li>
+                    <li>📈 <strong>拉高客單價</strong>：為了達標會一次消費更多</li>
+                    <li>📈 <strong>口碑行銷</strong>：VIP 會員更願意推薦朋友</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 13. 項目分類 -->
+        <section id="category">
+            <h2>13. 項目分類</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>項目分類</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>項目分類用於整理<strong>套票、優惠券、電子票券</strong>的分類標籤，方便顧客快速篩選。</p>
+            <p><strong>注意：</strong>此功能主要用於<strong>多元化經營</strong>的店家（例如：桌遊區、Switch 區、KTV 區等）。</p>
+
+            <h3>📋 預設分類</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>分類名稱</th>
+                        <th>適用項目</th>
+                    </tr>
+                    <tr>
+                        <td>麻將包廂</td>
+                        <td>標準麻將桌套票</td>
+                    </tr>
+                    <tr>
+                        <td>Switch 包廂</td>
+                        <td>含 Switch 主機的包廂</td>
+                    </tr>
+                    <tr>
+                        <td>VIP 包廂</td>
+                        <td>豪華大型包廂</td>
+                    </tr>
+                    <tr>
+                        <td>優惠活動</td>
+                        <td>限時優惠券、電子票券</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>⚙️ 新增分類</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>項目分類</strong>」</li>
+                <li>點擊「<strong>新增分類</strong>」</li>
+                <li>填寫分類名稱（例：桌遊專區）</li>
+                <li>設定分類圖示（選填）</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🏷️ 將套票歸類到分類</h3>
+            <ol class="step-list">
+                <li>進入「<strong>套票設定</strong>」</li>
+                <li>編輯要分類的套票</li>
+                <li>選擇「<strong>所屬分類</strong>」</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 何時需要使用項目分類？</h4>
+                <ul>
+                    <li>✅ 店內有<strong>不同類型</strong>的服務（麻將、桌遊、Switch、KTV）</li>
+                    <li>✅ 套票數量<strong>超過 10 種</strong>以上</li>
+                    <li>✅ 需要在用戶端 APP 分頁顯示不同類型套票</li>
+                </ul>
+
+                <h4>💡 純麻將館需要分類嗎？</h4>
+                <p>若店內只有麻將服務，<strong>不需要</strong>額外設定分類。</p>
+            </div>
+        </section>
+
+        <!-- 14. 長期訂位管理 -->
+        <section id="long-term">
+            <h2>14. 長期訂位管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>長期訂位管理</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>長期訂位用於<strong>企業包場、固定班底</strong>等需要<strong>長期固定時段</strong>的客戶。</p>
+            <p>例如：某公司每週五晚上 7-11 點固定包場、麻將社團每週三下午 2-6 點固定訂位。</p>
+
+            <h3>📋 長期訂位設定項目</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>設定項目</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td><strong>客戶名稱</strong></td>
+                        <td>公司名稱或聯絡人姓名</td>
+                    </tr>
+                    <tr>
+                        <td><strong>聯絡電話</strong></td>
+                        <td>方便聯繫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>包廂</strong></td>
+                        <td>固定使用哪個包廂</td>
+                    </tr>
+                    <tr>
+                        <td><strong>時段</strong></td>
+                        <td>每週幾、幾點到幾點</td>
+                    </tr>
+                    <tr>
+                        <td><strong>方案</strong></td>
+                        <td>月租、季租、年租</td>
+                    </tr>
+                    <tr>
+                        <td><strong>費用</strong></td>
+                        <td>月費或季費金額</td>
+                    </tr>
+                    <tr>
+                        <td><strong>合約期限</strong></td>
+                        <td>起始日期與結束日期</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>⚙️ 新增長期訂位</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>長期訂位管理</strong>」</li>
+                <li>點擊「<strong>新增長期訂位</strong>」</li>
+                <li>填寫客戶資料、包廂、時段</li>
+                <li>設定方案與費用</li>
+                <li>設定合約期限</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🔒 長期訂位的效果</h3>
+            <ul>
+                <li>✅ 該時段會在用戶端 APP <strong>顯示為已預約</strong></li>
+                <li>✅ 其他顧客<strong>無法預約</strong>該時段</li>
+                <li>✅ 系統會自動生成<strong>每月訂單</strong>（方便對帳）</li>
+            </ul>
+
+            <div class="info-box info">
+                <h4>💡 長期訂位定價策略</h4>
+                <ul>
+                    <li>✅ <strong>月租方案</strong>：建議設定為「零售價 × 4 週 × 0.7-0.8」</li>
+                    <li>✅ <strong>季租方案</strong>：建議再給予 5-10% 折扣</li>
+                    <li>✅ <strong>年租方案</strong>：建議再給予 15-20% 折扣</li>
+                </ul>
+
+                <h4>💡 範例計算</h4>
+                <p><strong>零售價</strong>：每週五 19:00-23:00（4小時）= $350/次</p>
+                <p><strong>月租價</strong>：$350 × 4 週 × 0.75 = <strong>$1,050/月</strong></p>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 注意事項</h4>
+                <ul>
+                    <li>長期訂位需與客戶<strong>簽訂書面合約</strong></li>
+                    <li>建議收取<strong>押金</strong>（1-2 個月月費）</li>
+                    <li>若客戶取消長期訂位，請至系統<strong>手動刪除</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 15. 進出紀錄 -->
+        <section id="access-log">
+            <h2>15. 進出紀錄</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>設備管理</code> → <code>進出紀錄</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>進出紀錄用於追蹤<strong>包廂門鎖的開啟紀錄</strong>，包含：</p>
+            <ul>
+                <li>✅ <strong>誰</strong>開啟了門鎖（會員、店員、遠端開啟）</li>
+                <li>✅ <strong>何時</strong>開啟（精確到秒）</li>
+                <li>✅ <strong>哪個包廂</strong>的門鎖</li>
+                <li>✅ <strong>開門方式</strong>（密碼、藍牙、遠端）</li>
+            </ul>
+
+            <h3>📊 進出紀錄查詢</h3>
+            <ol class="step-list">
+                <li>點選「<strong>設備管理</strong>」→「<strong>進出紀錄</strong>」</li>
+                <li>選擇日期範圍（預設顯示今日）</li>
+                <li>（選填）篩選特定包廂或會員</li>
+                <li>查看紀錄列表</li>
+            </ol>
+
+            <h3>📋 紀錄欄位說明</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>欄位</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td><strong>時間</strong></td>
+                        <td>開門的日期與時間</td>
+                    </tr>
+                    <tr>
+                        <td><strong>包廂</strong></td>
+                        <td>被開啟的包廂名稱</td>
+                    </tr>
+                    <tr>
+                        <td><strong>開啟者</strong></td>
+                        <td>會員姓名、店員姓名或「系統遠端」</td>
+                    </tr>
+                    <tr>
+                        <td><strong>開門方式</strong></td>
+                        <td>密碼、藍牙、遠端（APP 手動開啟）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>訂單編號</strong></td>
+                        <td>關聯的訂單（若有）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔍 進出紀錄的應用場景</h3>
+            <div class="feature-section">
+                <h4>1. 安全監控</h4>
+                <p>若包廂內物品遺失，可查詢該時段<strong>誰進入過包廂</strong>。</p>
+
+                <h4>2. 糾紛處理</h4>
+                <p>顧客反映「無法開門」，可查詢紀錄確認<strong>是否真的嘗試開門</strong>。</p>
+
+                <h4>3. 店員管理</h4>
+                <p>追蹤店員是否<strong>按時巡房、清潔</strong>（透過開門紀錄確認）。</p>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 隱私保護</h4>
+                <p>進出紀錄涉及<strong>個人隱私</strong>，請妥善保管，勿外洩。</p>
+            </div>
+        </section>
+
+        <!-- 16. 繳費機使用管理 -->
+        <section id="payment-machine">
+            <h2>16. 繳費機使用管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>繳費機使用管理</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>繳費機使用管理用於記錄與追蹤<strong>硬幣繳費機</strong>的使用狀況，包含：</p>
+            <ul>
+                <li>✅ 繳費機內<strong>硬幣數量</strong></li>
+                <li>✅ 每日<strong>收幣紀錄</strong></li>
+                <li>✅ 繳費機<strong>故障回報</strong></li>
+            </ul>
+
+            <h3>🪙 初次設定：硬幣數量登記</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>繳費機使用管理</strong>」</li>
+                <li>點擊「<strong>初次設定</strong>」</li>
+                <li>填寫繳費機內<strong>初始硬幣數量</strong>（例：$1 硬幣 × 100、$5 硬幣 × 50）</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>💰 每日收幣紀錄</h3>
+            <ol class="step-list">
+                <li>每日營業結束後，清點繳費機內硬幣</li>
+                <li>進入「<strong>繳費機使用管理</strong>」</li>
+                <li>點擊「<strong>新增收幣紀錄</strong>」</li>
+                <li>填寫：
+                    <ul>
+                        <li>日期</li>
+                        <li>收取金額</li>
+                        <li>剩餘硬幣數量</li>
+                    </ul>
+                </li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🔧 繳費機故障回報</h3>
+            <ol class="step-list">
+                <li>若繳費機故障（無法收幣、找零錯誤等）</li>
+                <li>進入「<strong>繳費機使用管理</strong>」</li>
+                <li>點擊「<strong>故障回報</strong>」</li>
+                <li>填寫故障描述與照片</li>
+                <li>提交後，系統會通知<strong>ONE桌遊總部</strong></li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 繳費機管理建議</h4>
+                <ul>
+                    <li>✅ <strong>每日清點</strong>：避免硬幣不足導致無法找零</li>
+                    <li>✅ <strong>定期保養</strong>：每月清潔投幣口與找零機構</li>
+                    <li>✅ <strong>備用硬幣</strong>：準備充足的 $1、$5、$10 硬幣</li>
+                </ul>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 常見問題</h4>
+                <ul>
+                    <li>❓ <strong>繳費機不找零</strong> → 檢查硬幣盒是否已滿或硬幣不足</li>
+                    <li>❓ <strong>無法投幣</strong> → 清潔投幣口，檢查是否有卡幣</li>
+                    <li>❓ <strong>金額顯示錯誤</strong> → 重新啟動繳費機</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 17. 首頁儀表板 -->
+        <section id="dashboard">
+            <h2>17. 首頁儀表板</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：商家端 APP 開啟後的<strong>首頁</strong></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>首頁儀表板是店家最常使用的頁面，提供<strong>即時營運數據與包廂狀態</strong>。</p>
+
+            <h3>📊 儀表板顯示內容</h3>
+            <div class="feature-section">
+                <h4>1. 今日營收概覽</h4>
+                <table>
+                    <tr>
+                        <th>數據項目</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td><strong>今日營收</strong></td>
+                        <td>今日已完成訂單的總營收</td>
+                    </tr>
+                    <tr>
+                        <td><strong>今日訂單數</strong></td>
+                        <td>今日總訂單數量</td>
+                    </tr>
+                    <tr>
+                        <td><strong>進行中訂單</strong></td>
+                        <td>目前正在使用包廂的訂單數</td>
+                    </tr>
+                    <tr>
+                        <td><strong>預約訂單</strong></td>
+                        <td>今日尚未開始的預約數</td>
+                    </tr>
+                </table>
+
+                <h4>2. 包廂即時狀態</h4>
+                <p>顯示所有包廂的<strong>即時狀態</strong>：</p>
+                <ul>
+                    <li>🟢 <strong>空閒中</strong>：包廂可預約</li>
+                    <li>🔵 <strong>使用中</strong>：有訂單進行中</li>
+                    <li>🟡 <strong>清潔中</strong>：訂單結束，待清潔</li>
+                    <li>🔴 <strong>維修中</strong>：包廂停用（設備故障）</li>
+                </ul>
+
+                <h4>3. 今日預約時間軸</h4>
+                <p>以<strong>時間軸</strong>方式顯示今日所有包廂的預約狀況，快速掌握包廂使用率。</p>
+            </div>
+
+            <h3>🖱️ 快速操作</h3>
+            <div class="feature-section">
+                <h4>從儀表板可快速執行：</h4>
+                <ul>
+                    <li>✅ 點擊<strong>包廂卡片</strong> → 查看該包廂詳情與訂單</li>
+                    <li>✅ 點擊<strong>進行中訂單</strong> → 快速延長時間或結束訂單</li>
+                    <li>✅ 點擊<strong>清潔中</strong> → 標記清潔完成</li>
+                    <li>✅ 點擊<strong>今日營收</strong> → 查看詳細報表</li>
+                </ul>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 使用技巧</h4>
+                <p>建議將商家端 APP <strong>固定於店內平板或電腦</strong>，隨時監控包廂狀態。</p>
+            </div>
+        </section>
+
+        <!-- 18. 訂單管理 -->
+        <section id="orders">
+            <h2>18. 訂單管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>訂單管理</code>（底部導航列）</p>
+
+            <h3>🎯 功能說明</h3>
+            <p>訂單管理用於查詢、處理、修改<strong>所有訂單</strong>，包含進行中、已完成、已取消的訂單。</p>
+
+            <h3>📋 訂單狀態說明</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>訂單狀態</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td>🔵 <strong>進行中</strong></td>
+                        <td>顧客已入場，訂單尚未結束</td>
+                    </tr>
+                    <tr>
+                        <td>🟡 <strong>待付款</strong></td>
+                        <td>顧客已下單但尚未付款（10分鐘內需付款）</td>
+                    </tr>
+                    <tr>
+                        <td>🟢 <strong>已完成</strong></td>
+                        <td>訂單已結束，款項已入帳</td>
+                    </tr>
+                    <tr>
+                        <td>🟠 <strong>已取消</strong></td>
+                        <td>顧客取消訂單或系統自動取消</td>
+                    </tr>
+                    <tr>
+                        <td>🔴 <strong>退款中</strong></td>
+                        <td>訂單退款處理中</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔍 訂單查詢</h3>
+            <ol class="step-list">
+                <li>點選底部「<strong>訂單管理</strong>」</li>
+                <li>選擇訂單狀態篩選（進行中、已完成、已取消等）</li>
+                <li>（選填）輸入訂單編號、會員手機或包廂名稱搜尋</li>
+                <li>（選填）選擇日期範圍</li>
+                <li>查看訂單列表</li>
+            </ol>
+
+            <h3>📝 訂單詳情</h3>
+            <div class="feature-section">
+                <p>點擊訂單可查看：</p>
+                <ul>
+                    <li>✅ 訂單編號</li>
+                    <li>✅ 會員資料（姓名、電話）</li>
+                    <li>✅ 包廂名稱</li>
+                    <li>✅ 套票方案</li>
+                    <li>✅ 開始時間、結束時間</li>
+                    <li>✅ 訂單金額（原價、折扣、實付）</li>
+                    <li>✅ 付款方式（信用卡、LINE PAY、餘額等）</li>
+                    <li>✅ 使用的優惠券或電子票券</li>
+                </ul>
+            </div>
+
+            <h3>🔧 訂單操作</h3>
+            <div class="feature-section">
+                <h4>1. 延長訂單時間</h4>
+                <ol>
+                    <li>進入訂單詳情</li>
+                    <li>點擊「<strong>延長時間</strong>」</li>
+                    <li>選擇延長時數（1-4 小時）</li>
+                    <li>確認加價金額</li>
+                    <li>點擊「<strong>確認延長</strong>」</li>
+                    <li>顧客會收到<strong>延長通知</strong>並需線上付款</li>
+                </ol>
+
+                <h4>2. 縮短訂單時長（提早結束）</h4>
+                <ol>
+                    <li>進入訂單詳情</li>
+                    <li>點擊「<strong>提早結束</strong>」</li>
+                    <li>系統會計算<strong>未使用時數</strong>並退款</li>
+                    <li>點擊「<strong>確認結束</strong>」</li>
+                </ol>
+
+                <h4>3. 退款處理</h4>
+                <ol>
+                    <li>進入訂單詳情</li>
+                    <li>點擊「<strong>申請退款</strong>」</li>
+                    <li>選擇退款原因</li>
+                    <li>填寫退款金額</li>
+                    <li>提交後，由<strong>ONE桌遊總部</strong>審核</li>
+                    <li>審核通過後，款項退回顧客原付款方式</li>
+                </ol>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 注意事項</h4>
+                <ul>
+                    <li>延長訂單需<strong>顧客同意並付款</strong>後才生效</li>
+                    <li>提早結束訂單，系統會自動計算退款金額</li>
+                    <li>退款需<strong>總部審核</strong>，請耐心等待</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 19. 會員管理 -->
+        <section id="members">
+            <h2>19. 會員管理</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>會員管理</code>（底部導航列）</p>
+
+            <h3>🎯 功能說明</h3>
+            <p>會員管理用於查詢會員資料、查看消費紀錄、發放卡券、代客開包廂等。</p>
+
+            <h3>🔍 會員查詢</h3>
+            <ol class="step-list">
+                <li>點選底部「<strong>會員管理</strong>」</li>
+                <li>輸入會員<strong>手機號碼</strong>或<strong>姓名</strong>搜尋</li>
+                <li>點選會員查看詳細資料</li>
+            </ol>
+
+            <h3>📋 會員資料顯示</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>資料項目</th>
+                        <th>說明</th>
+                    </tr>
+                    <tr>
+                        <td><strong>會員姓名</strong></td>
+                        <td>會員註冊時填寫的姓名</td>
+                    </tr>
+                    <tr>
+                        <td><strong>手機號碼</strong></td>
+                        <td>會員帳號（登入用）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>會員等級</strong></td>
+                        <td>銅牌、銀牌、金牌、鑽石</td>
+                    </tr>
+                    <tr>
+                        <td><strong>本店餘額</strong></td>
+                        <td>會員在本店的儲值餘額</td>
+                    </tr>
+                    <tr>
+                        <td><strong>累積消費</strong></td>
+                        <td>會員在本店的歷史總消費金額</td>
+                    </tr>
+                    <tr>
+                        <td><strong>訂單數量</strong></td>
+                        <td>會員在本店的總訂單數</td>
+                    </tr>
+                    <tr>
+                        <td><strong>擁有卡券</strong></td>
+                        <td>會員持有的優惠券與電子票券</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🎁 發放卡券給會員</h3>
+            <ol class="step-list">
+                <li>進入會員詳情頁</li>
+                <li>點擊「<strong>發放卡券</strong>」</li>
+                <li>選擇要發放的優惠券或電子票券</li>
+                <li>填寫數量</li>
+                <li>（選填）填寫備註（例：生日禮）</li>
+                <li>點擊「<strong>確認發放</strong>」</li>
+            </ol>
+
+            <h3>📅 查看會員訂單歷史</h3>
+            <ol class="step-list">
+                <li>進入會員詳情頁</li>
+                <li>點擊「<strong>訂單歷史</strong>」</li>
+                <li>查看該會員的所有訂單（含已完成、已取消）</li>
+            </ol>
+
+            <h3>🛎️ 代客開包廂</h3>
+            <div class="feature-section">
+                <h4>使用場景</h4>
+                <p>當會員<strong>現場到店</strong>想直接開包廂（不透過 APP 預約），店員可代為開啟。</p>
+
+                <h4>操作步驟</h4>
+                <ol>
+                    <li>進入會員詳情頁</li>
+                    <li>點擊「<strong>代開包廂</strong>」</li>
+                    <li>選擇包廂與套票方案</li>
+                    <li>選擇付款方式：
+                        <ul>
+                            <li>使用會員餘額</li>
+                            <li>現金（店員收款後手動登記）</li>
+                            <li>繳費機付款</li>
+                        </ul>
+                    </li>
+                    <li>點擊「<strong>確認開啟</strong>」</li>
+                    <li>系統會自動開啟包廂門鎖</li>
+                </ol>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 會員管理技巧</h4>
+                <ul>
+                    <li>✅ <strong>生日行銷</strong>：每月查詢當月壽星，主動發送生日券</li>
+                    <li>✅ <strong>流失預警</strong>：篩選「超過 3 個月未消費」的會員，發送優惠召回</li>
+                    <li>✅ <strong>VIP 維護</strong>：定期關心高消費會員，提供專屬服務</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 20. 設備管理（IoT） -->
+        <section id="devices">
+            <h2>20. 設備管理（IoT）</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>設備管理</code>（底部導航列）</p>
+
+            <h3>🎯 功能說明</h3>
+            <p>設備管理用於遠端控制與監控<strong>智能設備</strong>，包含門鎖、電源、藍牙喇叭等。</p>
+
+            <h3>🔧 支援的設備類型</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>設備類型</th>
+                        <th>功能</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr>
+                        <td>🔒 <strong>智能門鎖</strong></td>
+                        <td>遠端開鎖、查看電量、設定密碼</td>
+                        <td>可遠端開啟、查看開門紀錄</td>
+                    </tr>
+                    <tr>
+                        <td>⚡ <strong>電源控制器</strong></td>
+                        <td>控制包廂電源（單路、三路）</td>
+                        <td>可遠端開啟/關閉電源</td>
+                    </tr>
+                    <tr>
+                        <td>🔊 <strong>藍牙喇叭</strong></td>
+                        <td>播放背景音樂、控制音量</td>
+                        <td>可遠端調整音量、切換歌曲</td>
+                    </tr>
+                    <tr>
+                        <td>📷 <strong>攝影機</strong></td>
+                        <td>即時監控包廂狀況</td>
+                        <td>可查看即時畫面（需授權）</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🔓 遠端開門操作</h3>
+            <ol class="step-list">
+                <li>點選「<strong>設備管理</strong>」</li>
+                <li>選擇要開啟的包廂</li>
+                <li>點擊該包廂的「<strong>門鎖</strong>」卡片</li>
+                <li>點擊「<strong>遠端開啟</strong>」按鈕</li>
+                <li>系統會發送指令至門鎖（約 1-3 秒開啟）</li>
+            </ol>
+
+            <h3>⚡ 電源控制操作</h3>
+            <div class="feature-section">
+                <h4>電源控制類型</h4>
+                <ul>
+                    <li><strong>單路控制</strong>：整個包廂統一開關</li>
+                    <li><strong>三路控制</strong>：可分別控制照明、插座、冷氣</li>
+                </ul>
+
+                <h4>操作步驟</h4>
+                <ol>
+                    <li>進入「<strong>設備管理</strong>」→ 選擇包廂</li>
+                    <li>點擊「<strong>電源控制器</strong>」卡片</li>
+                    <li>切換開關（單路）或選擇要控制的路線（三路）</li>
+                    <li>點擊「<strong>確認</strong>」</li>
+                </ol>
+            </div>
+
+            <h3>🔋 設備電量監控</h3>
+            <p>智能門鎖與部分設備會顯示<strong>電池電量</strong>：</p>
+            <ul>
+                <li>🟢 <strong>電量充足</strong>（>50%）</li>
+                <li>🟡 <strong>電量偏低</strong>（20%-50%）</li>
+                <li>🔴 <strong>電量不足</strong>（<20%，請盡快更換電池）</li>
+            </ul>
+
+            <h3>🛠️ 設備故障排除</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>問題</th>
+                        <th>可能原因</th>
+                        <th>解決方式</th>
+                    </tr>
+                    <tr>
+                        <td>門鎖無法遠端開啟</td>
+                        <td>網路斷線、電量不足</td>
+                        <td>檢查網路、更換電池</td>
+                    </tr>
+                    <tr>
+                        <td>電源控制器無反應</td>
+                        <td>設備離線</td>
+                        <td>重啟閘道器、檢查網路</td>
+                    </tr>
+                    <tr>
+                        <td>設備顯示「離線」</td>
+                        <td>Wi-Fi 訊號弱或斷線</td>
+                        <td>檢查路由器、重啟閘道器</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="info-box warning">
+                <h4>⚠️ 重要提醒</h4>
+                <ul>
+                    <li>定期檢查設備電量，避免因電量不足導致無法開門</li>
+                    <li>若設備持續離線，請聯繫<strong>ONE桌遊總部</strong>技術支援</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 21. 版面設定 -->
+        <section id="ui-settings">
+            <h2>21. 版面設定</h2>
+            
+            <h3>📍 功能位置</h3>
+            <p>路徑：<code>我的</code> → <code>版面設定</code></p>
+
+            <h3>🎯 功能說明</h3>
+            <p>版面設定用於自訂<strong>用戶端 APP 的視覺呈現</strong>，包含店家橫幅、包廂照片、主題色等。</p>
+
+            <h3>🎨 可自訂項目</h3>
+            <div class="feature-section">
+                <table>
+                    <tr>
+                        <th>設定項目</th>
+                        <th>說明</th>
+                        <th>建議</th>
+                    </tr>
+                    <tr>
+                        <td><strong>店家橫幅</strong></td>
+                        <td>用戶端首頁的輪播圖</td>
+                        <td>可上傳 3-5 張（展現店內環境、優惠活動）</td>
+                    </tr>
+                    <tr>
+                        <td><strong>主題色</strong></td>
+                        <td>APP 的主要配色</td>
+                        <td>建議與店內裝潢風格一致</td>
+                    </tr>
+                    <tr>
+                        <td><strong>LOGO</strong></td>
+                        <td>店家品牌標誌</td>
+                        <td>建議使用透明背景 PNG</td>
+                    </tr>
+                    <tr>
+                        <td><strong>包廂照片</strong></td>
+                        <td>每個包廂的展示照片</td>
+                        <td>高解析度、光線充足</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>🖼️ 上傳店家橫幅</h3>
+            <ol class="step-list">
+                <li>點選「<strong>我的</strong>」→「<strong>版面設定</strong>」</li>
+                <li>點擊「<strong>店家橫幅</strong>」</li>
+                <li>點擊「<strong>上傳圖片</strong>」（建議尺寸 1200×600 px）</li>
+                <li>可上傳 3-5 張輪播圖</li>
+                <li>拖曳調整輪播順序</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <h3>🎨 設定主題色</h3>
+            <ol class="step-list">
+                <li>進入「<strong>版面設定</strong>」</li>
+                <li>點擊「<strong>主題色</strong>」</li>
+                <li>選擇色彩（可使用色彩選擇器或輸入色碼）</li>
+                <li>預覽效果</li>
+                <li>點擊「<strong>保存</strong>」</li>
+            </ol>
+
+            <div class="info-box info">
+                <h4>💡 設計建議</h4>
+                <ul>
+                    <li>✅ <strong>橫幅照片</strong>：展現店內環境、優惠活動、節慶氛圍</li>
+                    <li>✅ <strong>主題色</strong>：選擇與品牌形象一致的顏色</li>
+                    <li>✅ <strong>包廂照片</strong>：拍攝角度統一、光線一致</li>
+                    <li>✅ <strong>定期更新</strong>：每月更新橫幅，保持新鮮感</li>
+                </ul>
+            </div>
+
+            <div class="info-box success">
+                <h4>✅ 版面設定的重要性</h4>
+                <p>精美的視覺呈現可提升<strong>顧客預約意願</strong>，建議定期更新橫幅與照片。</p>
+            </div>
+        </section>
+
+        <!-- 22. 常見問題處理 -->
+        <section id="faq">
+            <h2>22. 常見問題處理（FAQ）</h2>
+            
+            <h3>🔧 系統操作問題</h3>
+            <div class="feature-section">
+                <h4>Q1: 忘記商家端登入密碼怎麼辦？</h4>
+                <p><strong>A:</strong></p>
+                <ol>
+                    <li>點擊登入頁面的「<strong>忘記密碼</strong>」</li>
+                    <li>輸入註冊的手機號碼</li>
+                    <li>系統會發送<strong>驗證碼簡訊</strong></li>
+                    <li>輸入驗證碼後設定新密碼</li>
+                </ol>
+
+                <h4>Q2: 商家端 APP 無法登入？</h4>
+                <p><strong>A:</strong> 請確認以下事項：</p>
+                <ul>
+                    <li>✅ 帳號密碼是否正確</li>
+                    <li>✅ 網路連線是否正常</li>
+                    <li>✅ APP 版本是否為最新（至 App Store / Google Play 更新）</li>
+                    <li>✅ 若仍無法登入，請聯繫 ONE桌遊總部</li>
+                </ul>
+
+                <h4>Q3: 如何新增包廂？</h4>
+                <p><strong>A:</strong> 包廂新增需由<strong>ONE桌遊總部</strong>協助處理（涉及設備綁定與平面圖配置），請聯繫總部客服。</p>
+            </div>
+
+            <h3>💳 金流與付款問題</h3>
+            <div class="feature-section">
+                <h4>Q4: 顧客反映付款失敗怎麼辦？</h4>
+                <p><strong>A:</strong> 請先確認：</p>
+                <ol>
+                    <li>顧客的付款方式是否正常（信用卡額度、LINE PAY 餘額）</li>
+                    <li>檢查店家的<strong>金流設定</strong>是否正確（藍新金流或 LINE PAY）</li>
+                    <li>請顧客重新嘗試付款</li>
+                    <li>若持續失敗，請聯繫 ONE桌遊總部技術支援</li>
+                </ol>
+
+                <h4>Q5: 如何查詢營收撥款時間？</h4>
+                <p><strong>A:</strong></p>
+                <ul>
+                    <li><strong>藍新金流</strong>：通常為 <strong>T+2 個工作天</strong>（例：週一交易，週三撥款）</li>
+                    <li><strong>LINE PAY</strong>：通常為 <strong>T+3 個工作天</strong></li>
+                    <li>可登入金流商後台查詢撥款明細</li>
+                </ul>
+            </div>
+
+            <h3>🔒 設備與門鎖問題</h3>
+            <div class="feature-section">
+                <h4>Q6: 門鎖無法開啟怎麼辦？</h4>
+                <p><strong>A:</strong> 請依序檢查：</p>
+                <ol>
+                    <li><strong>電量</strong>：檢查門鎖電池是否充足（<strong>設備管理</strong> 可查看電量）</li>
+                    <li><strong>網路</strong>：確認閘道器與路由器連線正常</li>
+                    <li><strong>重新啟動</strong>：至「設備管理」手動遠端開啟</li>
+                    <li><strong>備用方式</strong>：使用實體鑰匙開門（緊急用）</li>
+                    <li>若仍無法開啟，請聯繫 ONE桌遊總部</li>
+                </ol>
+
+                <h4>Q7: 包廂電源無法控制？</h4>
+                <p><strong>A:</strong></p>
+                <ul>
+                    <li>檢查電源控制器是否<strong>離線</strong>（設備管理查看）</li>
+                    <li>重啟閘道器</li>
+                    <li>檢查 Wi-Fi 訊號強度</li>
+                    <li>若問題持續，請聯繫總部技術支援</li>
+                </ul>
+            </div>
+
+            <h3>👥 會員與訂單問題</h3>
+            <div class="feature-section">
+                <h4>Q8: 顧客要求退款怎麼處理？</h4>
+                <p><strong>A:</strong></p>
+                <ol>
+                    <li>確認顧客的退款原因</li>
+                    <li>檢查訂單狀態（是否符合退款條件）</li>
+                    <li>至「<strong>訂單管理</strong>」→「<strong>申請退款</strong>」</li>
+                    <li>填寫退款原因與金額</li>
+                    <li>提交後由 ONE桌遊總部審核</li>
+                    <li>審核通過後，款項自動退回顧客</li>
+                </ol>
+
+                <h4>Q9: 顧客反映收不到驗證碼簡訊？</h4>
+                <p><strong>A:</strong></p>
+                <ul>
+                    <li>請顧客確認手機號碼是否正確</li>
+                    <li>檢查手機是否有訊號</li>
+                    <li>某些電信業者可能延遲，請稍候 1-2 分鐘</li>
+                    <li>建議顧客重新發送驗證碼</li>
+                </ul>
+
+                <h4>Q10: 如何幫會員修改訂單時間？</h4>
+                <p><strong>A:</strong></p>
+                <ol>
+                    <li>進入「<strong>訂單管理</strong>」</li>
+                    <li>搜尋該會員的訂單</li>
+                    <li>點擊「<strong>延長時間</strong>」或「<strong>提早結束</strong>」</li>
+                    <li>系統會自動計算價差並請會員付款</li>
+                </ol>
+            </div>
+
+            <h3>📞 聯繫 ONE桌遊總部</h3>
+            <div class="info-box success">
+                <h4>✅ 如何取得技術支援？</h4>
+                <p><strong>ONE桌遊總部客服</strong></p>
+                <ul>
+                    <li>📱 LINE 官方帳號：<code>@949eojbg</code></li>
+                    <li>📞 客服電話：中午 12:00 - 晚上 12:00</li>
+                    <li>📧 客服信箱：<code>support@onegame.com.tw</code></li>
+                </ul>
+                <p><strong>緊急狀況（設備故障、系統異常）</strong>請優先撥打客服電話。</p>
+            </div>
+
+            <div class="info-box info">
+                <h4>💡 問題回報建議</h4>
+                <p>聯繫客服時，請提供以下資訊以加速處理：</p>
+                <ul>
+                    <li>✅ 店家名稱</li>
+                    <li>✅ 問題描述（越詳細越好）</li>
+                    <li>✅ 發生時間</li>
+                    <li>✅ 相關截圖或照片</li>
+                    <li>✅ 訂單編號（若與訂單相關）</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 結尾 -->
+        <section style="margin-top: 60px; padding: 40px; background: linear-gradient(135deg, #667eea15, #764ba215); border-radius: 10px; text-align: center;">
+            <h2 style="color: #667eea; margin-bottom: 20px;">🎉 恭喜！您已完成新員工教育訓練</h2>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                掌握 ONE桌遊商家端管理系統的所有功能後，您已具備獨立管理店務的能力。
+            </p>
+            <p style="font-size: 1em; color: #666;">
+                如有任何問題，請隨時聯繫 <strong>ONE桌遊總部</strong>。<br>
+                祝您營運順利，業績長紅！🚀
+            </p>
+        </section>
+
+        <p style="text-align: center; margin-top: 60px; padding-top: 30px; border-top: 2px solid #ddd; color: #666;">
+            <strong>ONE桌遊商家端管理系統 — 新員工教育訓練教材 v1.0</strong><br>
+            © 2026 ONE桌遊 | 版權所有<br>
+            最後更新：2026-02-26
+        </p>
+    </div>
+
+    <script>
+        // 平滑滾動到錨點
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    </div>
+
+    <script>
+        // 平滑滾動到錨點
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+    </div>
+
+    <script>
+        // 平滑滾動到錨點
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
