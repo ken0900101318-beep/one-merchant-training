@@ -388,10 +388,197 @@
                 display: block !important;
             }
         }
+
+        /* ===== 新增：側邊欄導航 ===== */
+        .sidebar {
+            position: fixed;
+            left: 20px;
+            top: 80px;
+            width: 280px;
+            max-height: calc(100vh - 160px);
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow-y: auto;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        
+        .sidebar h3 {
+            color: #667eea;
+            font-size: 1.2em;
+            margin: 0 0 15px 0;
+            padding: 0 0 10px 0;
+            border-bottom: 2px solid #667eea;
+            border-left: none;
+        }
+        
+        .sidebar-nav {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .sidebar-nav li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .sidebar-nav a {
+            display: block;
+            padding: 10px 15px;
+            color: #555;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-nav a:hover {
+            background: #f0f4ff;
+            color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .sidebar-nav a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 搜尋框 */
+        .search-box {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 40px 12px 15px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            font-size: 0.95em;
+            transition: border-color 0.3s;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .search-box .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        /* 回到頂部按鈕 */
+        .back-to-top {
+            position: fixed;
+            right: 30px;
+            bottom: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s;
+            z-index: 999;
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .back-to-top.show {
+            display: flex;
+        }
+        
+        /* 主內容區域調整 */
+        .content-wrapper {
+            margin-left: 320px;
+        }
+        
+        /* 手機版響應式 */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .content-wrapper {
+                margin-left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: fixed;
+                left: 20px;
+                top: 20px;
+                z-index: 1001;
+                background: #667eea;
+                color: white;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 8px;
+                cursor: pointer;
+            }
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+        }
+        
+        /* 搜尋結果高亮 */
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        /* 章節錨點偏移（避免被固定標題遮住） */
+        h2[id] {
+            scroll-margin-top: 20px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="container">
+
+    <!-- 手機版選單按鈕 -->
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()">☰ 選單</button>
+    
+    <!-- 側邊欄導航 -->
+    <div class="sidebar">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜尋關鍵字..." oninput="performSearch()">
+            <span class="search-icon">🔍</span>
+        </div>
+        <h3>📚 章節導航</h3>
+        <ul class="sidebar-nav">
+            <!-- JavaScript 將自動生成導航項目 -->
+        </ul>
+    </div>
+    
+    <!-- 回到頂部按鈕 -->
+    <button class="back-to-top" onclick="scrollToTop()">↑</button>
+
+    <div class="container content-wrapper">
         <h1>🎮 ONE桌遊商家端管理系統</h1>
         <p style="text-align: center; font-size: 1.2em; color: #666; margin-bottom: 30px;">
             <strong>新員工教育訓練教材 v1.0</strong><br>
@@ -2657,5 +2844,129 @@
             });
         });
     </script>
+
+    <script>
+        // ===== 側邊欄導航功能 =====
+        
+        // 生成側邊欄導航
+        function generateSidebar() {
+            const chapters = document.querySelectorAll('h2[id]');
+            const sidebar = document.querySelector('.sidebar-nav');
+            
+            chapters.forEach((chapter, index) => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '#' + chapter.id;
+                a.textContent = chapter.textContent.replace(/📖|🎉/, '').trim();
+                a.onclick = (e) => {
+                    e.preventDefault();
+                    chapter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    updateActiveNav();
+                };
+                li.appendChild(a);
+                sidebar.appendChild(li);
+            });
+        }
+        
+        // 更新當前激活的導航項
+        function updateActiveNav() {
+            const chapters = document.querySelectorAll('h2[id]');
+            const navLinks = document.querySelectorAll('.sidebar-nav a');
+            
+            let current = '';
+            
+            chapters.forEach(chapter => {
+                const rect = chapter.getBoundingClientRect();
+                if (rect.top <= 100 && rect.top >= -rect.height) {
+                    current = chapter.id;
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // ===== 搜尋功能 =====
+        let searchTimeout;
+        
+        function performSearch() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const keyword = document.getElementById('searchInput').value.toLowerCase();
+                const content = document.querySelector('.content-wrapper');
+                
+                // 移除舊的高亮
+                content.innerHTML = content.innerHTML.replace(/<mark class="highlight">(.*?)<\/mark>/gi, '$1');
+                
+                if (keyword.length < 2) return;
+                
+                // 高亮搜尋結果
+                const regex = new RegExp(`(${keyword})`, 'gi');
+                const walker = document.createTreeWalker(
+                    content,
+                    NodeFilter.SHOW_TEXT,
+                    null,
+                    false
+                );
+                
+                const nodesToReplace = [];
+                while (walker.nextNode()) {
+                    if (walker.currentNode.nodeValue.match(regex)) {
+                        nodesToReplace.push(walker.currentNode);
+                    }
+                }
+                
+                nodesToReplace.forEach(node => {
+                    const span = document.createElement('span');
+                    span.innerHTML = node.nodeValue.replace(regex, '<mark class="highlight">$1</mark>');
+                    node.parentNode.replaceChild(span, node);
+                });
+                
+                // 滾動到第一個結果
+                const firstResult = document.querySelector('.highlight');
+                if (firstResult) {
+                    firstResult.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 500);
+        }
+        
+        // ===== 回到頂部按鈕 =====
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function toggleBackToTop() {
+            const btn = document.querySelector('.back-to-top');
+            if (window.scrollY > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        }
+        
+        // ===== 手機版選單切換 =====
+        function toggleMobileSidebar() {
+            document.querySelector('.sidebar').classList.toggle('show');
+        }
+        
+        // ===== 初始化 =====
+        window.addEventListener('DOMContentLoaded', () => {
+            generateSidebar();
+            
+            // 滾動事件監聽
+            window.addEventListener('scroll', () => {
+                updateActiveNav();
+                toggleBackToTop();
+            });
+            
+            // 初始化當前章節
+            updateActiveNav();
+        });
+    </script>
+
 </body>
 </html>
