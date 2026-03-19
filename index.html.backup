@@ -2893,29 +2893,19 @@
         // ===== 搜尋功能 =====
         let searchTimeout;
         
-        // XSS 防護：轉義正則表達式特殊字元
-        function escapeRegex(str) {
-            return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
-
         function performSearch() {
             clearTimeout(searchTimeout);
             searchTimeout = setTimeout(() => {
                 const keyword = document.getElementById('searchInput').value.toLowerCase();
                 const content = document.querySelector('.content-wrapper');
                 
-                // 移除舊的高亮（使用 DOM 操作）
-                const highlights = content.querySelectorAll('mark.highlight');
-                highlights.forEach(mark => {
-                    const text = mark.textContent;
-                    mark.replaceWith(document.createTextNode(text));
-                });
+                // 移除舊的高亮
+                content.innerHTML = content.innerHTML.replace(/<mark class="highlight">(.*?)<\/mark>/gi, '$1');
                 
                 if (keyword.length < 2) return;
                 
-                // 高亮搜尋結果（安全版本）
-                const escapedKeyword = escapeRegex(keyword);
-                const regex = new RegExp(`(${escapedKeyword})`, 'gi');
+                // 高亮搜尋結果
+                const regex = new RegExp(`(${keyword})`, 'gi');
                 const walker = document.createTreeWalker(
                     content,
                     NodeFilter.SHOW_TEXT,
@@ -2931,22 +2921,9 @@
                 }
                 
                 nodesToReplace.forEach(node => {
-                    const fragment = document.createDocumentFragment();
-                    const parts = node.nodeValue.split(regex);
-                    
-                    parts.forEach((part, index) => {
-                        if (index % 2 === 1) {
-                            // 匹配的部分
-                            const mark = document.createElement('mark');
-                            mark.className = 'highlight';
-                            mark.textContent = part;  // 使用 textContent（安全）
-                            fragment.appendChild(mark);
-                        } else if (part) {
-                            fragment.appendChild(document.createTextNode(part));
-                        }
-                    });
-                    
-                    node.parentNode.replaceChild(fragment, node);
+                    const span = document.createElement('span');
+                    span.innerHTML = node.nodeValue.replace(regex, '<mark class="highlight">$1</mark>');
+                    node.parentNode.replaceChild(span, node);
                 });
                 
                 // 滾動到第一個結果
